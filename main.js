@@ -1,4 +1,9 @@
 /**
+* Load config
+*/
+require('dotenv').load();
+
+/**
 * Create express app
 */
 const express = require('express');
@@ -41,6 +46,6 @@ app.post('/session', (req, res) => {
 /**
 * Listen
 */
-server.listen(4022, () => {
-	console.log('listening on :4022');
+server.listen(process.env.PORT, () => {
+	console.log(`listening on :${process.env.PORT}`);
 });
