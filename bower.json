@@ -1,0 +1,20 @@
+{
+  "name": "demo-ssh-auth",
+  "version": "0.1.0",
+  "authors": [
+    "altitude <salaun.clement@gmail.com>"
+  ],
+  "description": "demo of web authentication using ssh",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "vue": "~0.12.16"
+  }
+}

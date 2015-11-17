@@ -1,0 +1,55 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Demo SSH Web Authentication</title>
+	<!-- bower:css -->
+	<!-- endbower -->
+	<link rel="stylesheet" type="text/css" href="/public/components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/public/styles/main.css">
+</head>
+<body>
+
+	<div id="app" class="container">
+		<h1>Login with SSH</h1>
+		
+		<p class="description">
+			A simple experiment to authenticate web sessions with SSH.
+			<a href="https://github.com/altitude/login-with-ssh">More info.</a>
+		</p>
+
+		<div v-show="step == 0" v-transition="expand">
+			<textarea rows="6" placeholder="Paste your SSH public key here..." v-model="publicKey"></textarea>
+			<button v-on="click: step = 1;">Next</button>
+		</div>
+
+		<div class="authentication" v-show="addr && step == 1" v-transition="expand" style="display: none;">
+			<p>
+				<div class="shell" v-text="addr"></div>
+			</p>
+			<div class="auth-result">
+				<div v-show="!authenticated && !error">
+					<h3>Waiting for authentication</h3>
+				</div>
+				<div v-show="authenticated && !error">
+					<h3 class="ok">Authenticated!</h3>
+				</div>
+				<div v-show="!authenticated && error">
+					<h3 class="error">Authentication error</h3>
+					<p>Did you use the correct key? You can set a specific key with <span class="shell">ssh -i ~/path/to/key</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Github ribbon -->
+	<a href="https://github.com/altitude/login-with-ssh"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+	<!-- bower:js -->
+	<script src="/public/components/jquery/dist/jquery.js"></script>
+	<script src="/public/components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/public/components/vue/dist/vue.js"></script>
+	<!-- endbower -->
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/public/scripts/main.js"></script>
+</body>
+</html>
